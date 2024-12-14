@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Salons</title>
+</head>
+<body>
+    <h1>Salon Details</h1>
+    <ul id="salonsList"></ul>
+    <a href="/">Add Another Salon</a>
+    <script>
+        fetch('/api/salons')
+            .then(response => response.json())
+            .then(data => {
+                const salonsList = document.getElementById('salonsList');
+                data.forEach(salon => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>Name:</strong> ${salon.name} <br>
+                                    <strong>Location:</strong> ${salon.location} <br>
+                                    <strong>Services:</strong> ${salon.services}`;
+                    salonsList.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>
